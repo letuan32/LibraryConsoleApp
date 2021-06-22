@@ -15,7 +15,7 @@ namespace Library.App.Service
 
         bool Add(int id, string bookTitle, DateTime borrowDate, DateTime dueDate);
 
-        bool UpdateById(int id, string bookTitle, DateTime borrowDate, DateTime dueDate, bool isReturn);
+        bool UpdateById(int id, string bookTitle, bool isReturn);
 
     }
 }

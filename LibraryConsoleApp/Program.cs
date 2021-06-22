@@ -3,6 +3,7 @@ using Library.App.BLL;
 using Library.App.DAL;
 using Library.App.Entities;
 using Library.App.Service;
+using Library.App.UI;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,8 @@ namespace LibraryConsoleApp
 
             List<Book> listBook = bookBLL.GetBooks();
 
-            foreach(Book book in listBook)
-            {
-                Console.WriteLine("ID = {0}, Title = {1}", book.Id, book.Title);
-            }
-
-            Console.WriteLine("Hello World!");
+            StartUI newUI = new StartUI();
+            newUI.StartMenu();
 
         }
     }

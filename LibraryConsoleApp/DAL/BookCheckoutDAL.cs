@@ -60,7 +60,7 @@ namespace Library.App.DAL
                 bookCheckouts.Add(newRecord);
                 status = true;
             }
-            catch(ApplicationException e)
+            catch(FormatException)
             {
                 status = false;
             }
@@ -68,7 +68,7 @@ namespace Library.App.DAL
             
         }
 
-        public bool UpdateById(int id, string bookTitle, DateTime borrowDate, DateTime dueDate, bool isReturn)
+        public bool UpdateById(int id, string bookTitle, bool isReturn)
         {
             bool status = false;
             try
@@ -79,7 +79,7 @@ namespace Library.App.DAL
                 updateRecord.IsReturn = isReturn;
                 status = true;
             }
-           catch(ApplicationException e)
+           catch(FormatException)
             {
                 status = false;
             }
