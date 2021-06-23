@@ -14,10 +14,20 @@ namespace Library.App.DAL
             new BookCheckout()
             {
                 RecordId = 1,
+                MemberId = 1,
                 BookTitle = "Introduction to C#",
                 BorrowDate = DateTime.Now,
                 DueDate = DateTime.Now.AddDays(15),
                 IsReturn = false
+            },
+            new BookCheckout()
+            {
+                RecordId = 2,
+                MemberId = 2,
+                BookTitle = "Basic Python",
+                BorrowDate = DateTime.Now.AddDays(-20),
+                DueDate = DateTime.Now.AddDays(-10),
+                IsReturn = true
             }
         };
 
@@ -45,17 +55,19 @@ namespace Library.App.DAL
             return checkout;
         }
 
-        public bool Add(int id, string bookTitle, DateTime borrowDate, DateTime dueDate)
+        public bool Add(BookCheckout record)
         {
             bool status = false;
             try
             {
                 BookCheckout newRecord = new BookCheckout()
                 {
-                    RecordId = id,
-                    BookTitle = bookTitle,
-                    BorrowDate = borrowDate,
-                    DueDate = dueDate
+                    RecordId = record.RecordId,
+                    MemberId = record.MemberId,
+                    BookTitle = record.BookTitle,
+                    BorrowDate =record.BorrowDate,
+                    DueDate = record.DueDate,
+                 
                 };
                 bookCheckouts.Add(newRecord);
                 status = true;
@@ -68,13 +80,14 @@ namespace Library.App.DAL
             
         }
 
-        public bool UpdateById(int id, string bookTitle, bool isReturn)
+        public bool UpdateById(int recordId, int menberId, string bookTitle, bool isReturn)
         {
             bool status = false;
             try
             {
-                BookCheckout updateRecord = bookCheckouts.Find(b => b.RecordId == id);
+                BookCheckout updateRecord = bookCheckouts.Find(b => b.RecordId == recordId);
 
+                updateRecord.MemberId = menberId;
                 updateRecord.BookTitle = bookTitle;
                 updateRecord.IsReturn = isReturn;
                 status = true;
@@ -86,6 +99,21 @@ namespace Library.App.DAL
             return status;
 
         }
-        
+
+        public bool DeleteById(int recordId)
+        {
+            bool isSuccess = false;
+            try
+            {
+                BookCheckout deleteRecord = bookCheckouts.Find(s => s.RecordId == recordId);
+                bookCheckouts.Remove(deleteRecord);
+            }
+            catch (FormatException)
+            {
+                isSuccess = false;
+
+            }
+            return isSuccess;
+        }
     }
 }

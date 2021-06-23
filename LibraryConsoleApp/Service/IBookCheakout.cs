@@ -13,9 +13,9 @@ namespace Library.App.Service
 
         BookCheckout GetById(int id);
 
-        bool Add(int id, string bookTitle, DateTime borrowDate, DateTime dueDate);
+        bool Add(BookCheckout bookCheckout);
 
-        bool UpdateById(int id, string bookTitle, bool isReturn);
-
+        bool UpdateById(int recordId,int menberId, string bookTitle, bool isReturn);
+        bool DeleteById(int recordId);
     }
 }

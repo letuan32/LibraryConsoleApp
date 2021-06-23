@@ -40,22 +40,104 @@ namespace Library.App.DAL
         }
 
         //Get book by title
-        public Book GetBookByTitle(string title)
+        public List<Book> GetBookByTitle(string title)
         {
-            var book = books.FirstOrDefault(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
-            return book;
+            List<Book> resultList = new List<Book>();
+            foreach(Book book in books)
+            {
+                if (book.Title.Equals(title, StringComparison.OrdinalIgnoreCase))
+                    resultList.Add(book);
+            }
+            return resultList;
+           
+           
         }
 
         // Get book by Id
-        public Book GetBookById(int id)
+        public List<Book> GetBookById(int id)
         {
-            var book = books.FirstOrDefault(b=>b.Id == id );
-            return book;
+            List<Book> resultList = new List<Book>();
+            foreach (Book book in books)
+            {
+                if (book.Id == id)
+                    resultList.Add(book);
+            }
+            return resultList;
         }
 
-        public List<Book> GetByAuthor()
+        public List<Book> GetBookByAuthor(string author)
         {
-            throw new NotImplementedException();
+            List<Book> resultList = new List<Book>();
+            foreach (Book book in books)
+            {
+                if (book.Author.Equals(author, StringComparison.OrdinalIgnoreCase))
+                    resultList.Add(book);
+            }
+            return resultList;
+        }
+
+        public bool AddBook(Book book)
+        {
+            bool isSuccess = false;
+            try
+            {
+                Book newBook = new Book()
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    ISBN = book.ISBN,
+                    Author = book.Author,
+                    Language = book.Language,
+                    Subject = book.Subject,
+                    Publisher = book.Publisher
+                    
+                };
+                books.Add(newBook);
+                isSuccess = true;
+            }
+            catch (FormatException)
+            {
+                isSuccess = false;
+            }
+            return isSuccess;
+        }
+
+        public bool DeleteBook(int id)
+        {
+            bool isSuccess = false;
+            try
+            {
+                Book deleteBook = books.Find(s => s.Id == id);
+                books.Remove(deleteBook);
+            }
+            catch (FormatException)
+            {
+                isSuccess = false;
+
+            }
+            return isSuccess;
+        }
+
+        public bool UpdateBook(Book book)
+        {
+            bool isSuccess = false;
+            try
+            {
+                Book updateBook = books.Find(b => b.Id == book.Id);
+
+
+                updateBook.Title = book.Title;
+                updateBook.ISBN = book.ISBN;
+                updateBook.Author = book.Author;
+                updateBook.Language = book.Language;
+                updateBook.Subject = book.Subject;
+                updateBook.Publisher = book.Publisher;
+            }
+            catch (FormatException)
+            {
+                isSuccess = false;
+            }
+            return isSuccess;
         }
     }
 

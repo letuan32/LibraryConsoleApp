@@ -8,10 +8,17 @@ namespace Library.App.Service
     public interface IBook
     {
         List<Book> GetBooks();
-        Book GetBookByTitle(string title);
-        Book GetBookById(int id);
+        List<Book> GetBookByTitle(string title);
+        List<Book> GetBookById(int id);
 
-        List<Book> GetByAuthor();
+        List<Book> GetBookByAuthor(string author);
+
+        bool AddBook(Book book);
+
+        bool DeleteBook(int id);
+
+        bool UpdateBook(Book book);
+        
 
     }
 }
