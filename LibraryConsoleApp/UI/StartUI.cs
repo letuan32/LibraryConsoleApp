@@ -13,8 +13,8 @@ namespace Library.App.UI
             {
                 try
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("Welcome to ABC Library Management System");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Library Management System");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("1) Press 1 to login as Librarian\n" +
                     "2) Press 2 to login as Staff\n" +

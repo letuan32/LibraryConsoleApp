@@ -22,24 +22,28 @@ namespace Library.App.BLL
             return _bookCheckout.GetAll();
         }
 
-        List<BookCheckout> GetByIBookTitle(string title)
+        public List<BookCheckout> GetByIBookTitle(string title)
         {
             return _bookCheckout.GetByIBookTitle(title);
         }
 
-        BookCheckout GetById(int id)
+        public BookCheckout GetById(int id)
         {
             return _bookCheckout.GetById(id);
         }
 
-        bool Add(int id, string bookTitle, DateTime borrowDate, DateTime dueDate)
+        public bool Add(BookCheckout bookCheckout)
         {
-            return _bookCheckout.Add(id, bookTitle, borrowDate, dueDate);
+            return _bookCheckout.Add(bookCheckout);
+        }
+        public bool DeleteById(int recordId)
+        {
+            return _bookCheckout.DeleteById(recordId);
         }
 
-        bool UpdateById(int id, string bookTitle, bool isReturn)
+        public bool UpdateById(int recordId, int memberId, string bookTitle, bool isReturn)
         {
-            return _bookCheckout.UpdateById(id, bookTitle, isReturn);
+            return _bookCheckout.UpdateById( recordId, memberId, bookTitle, isReturn);
         }
     }
 }

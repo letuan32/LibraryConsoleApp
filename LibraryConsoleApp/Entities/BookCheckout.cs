@@ -11,6 +11,7 @@ namespace Library.App.Entities
         public DateTime BorrowDate { get; set; }
         public DateTime DueDate { get; set; }
         public bool IsReturn { get; set; }
+        public int MemberId { get; set; }
 
     }
 }
